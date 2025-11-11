@@ -5,24 +5,24 @@
 //    Jika TIDAK ADA session 'username' (atau 'user_id'),
 //    maka redirect (paksa) pengguna kembali ke halaman index.php
 //
- session_set_cookie_params([
-     'lifetime' => 0,
+session_set_cookie_params([
+    'lifetime' => 0,
      'path' => '/',
      'domain' => '',
      'secure' => false,
      'httponly' => true,
      'samesite' => 'Lax'
- ]);
- session_start();
+]);
+    session_start();
 
  if (!isset($_SESSION['username'])) {
      header("Location: index.php");
-     exit(); // Penting untuk menghentikan eksekusi script
- }
+     exit(); 
+}
 // // Tambahkan header untuk mencegah caching oleh browser sehingga tombol back tidak menampilkan halaman cache
- header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
- header('Cache-Control: post-check=0, pre-check=0', false);
- header('Pragma: no-cache');
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
 ?>
 
 <!DOCTYPE html>
@@ -75,13 +75,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Jika halaman dipulihkan dari bfcache, reload untuk memastikan session validasi berjalan ulang
-        window.addEventListener('pageshow', function(event) {
-            if (event.persisted) {
-                window.location.reload();
+         window.addEventListener('pageshow', function(event) {
+             if (event.persisted) {
+                 window.location.reload();
              }
-        });
+         });
     </script>
 </body>
-
 
 </html>
